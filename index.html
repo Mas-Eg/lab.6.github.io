@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лабораторная работа 6</title>
+    <title>Калькулятор стоимости</title>
     <style>
         * {
             box-sizing: border-box;
@@ -16,36 +16,37 @@
             color: #333;
         }
         .calculator {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            padding: 25px;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
         }
         .form-group {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 6px;
             background-color: #f8f9fa;
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: #2c3e50;
         }
         input[type="number"], select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            border-radius: 4px;
+            font-size: 14px;
         }
         input[type="number"]:focus, select:focus {
             border-color: #3498db;
@@ -53,13 +54,16 @@
         }
         .radio-group {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 10px;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
         }
         .radio-option {
-            flex: 1;
-            min-width: 150px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .radio-option:hover {
+            background-color: #e9ecef;
         }
         .radio-option input {
             margin-right: 8px;
@@ -67,35 +71,28 @@
         .checkbox-option {
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .checkbox-option input {
-            margin-right: 10px;
-            transform: scale(1.2);
+            margin-right: 8px;
         }
         .price-display {
             text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #3498db, #2c3e50);
+            padding: 15px;
+            background: #2c3e50;
             color: white;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-size: 24px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 18px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        .price-display.updated {
-            transform: scale(1.02);
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
         }
         .hidden {
             display: none;
         }
         .info-text {
-            font-size: 14px;
+            font-size: 12px;
             color: #7f8c8d;
-            margin-top: 5px;
+            margin-top: 3px;
         }
     </style>
 </head>
@@ -114,17 +111,17 @@
                 <div class="radio-option">
                     <input type="radio" id="type1" name="serviceType" value="basic" checked>
                     <label for="type1">Базовая услуга</label>
-                    <div class="info-text">Цена: 500 руб./ед.</div>
+                    <div class="info-text">500 руб./ед.</div>
                 </div>
                 <div class="radio-option">
                     <input type="radio" id="type2" name="serviceType" value="premium">
                     <label for="type2">Премиум услуга</label>
-                    <div class="info-text">Цена: 1000 руб./ед.</div>
+                    <div class="info-text">1000 руб./ед.</div>
                 </div>
                 <div class="radio-option">
                     <input type="radio" id="type3" name="serviceType" value="custom">
                     <label for="type3">Кастомная услуга</label>
-                    <div class="info-text">Цена: 1500 руб./ед.</div>
+                    <div class="info-text">1500 руб./ед.</div>
                 </div>
             </div>
         </div>
@@ -253,12 +250,6 @@
             
             // Обновляем отображение цены
             priceResult.textContent = `Стоимость: ${price.toLocaleString('ru-RU')} руб.`;
-            
-            // Добавляем анимацию обновления
-            priceResult.classList.add('updated');
-            setTimeout(() => {
-                priceResult.classList.remove('updated');
-            }, 300);
         }
 
         // Инициализируем калькулятор после загрузки DOM
