@@ -85,7 +85,8 @@ function calculatePrice() {
     const selectedType = document.querySelector('input[name="serviceType"]:checked').value;
     const service = serviceData[selectedType];
     if(quantity < 1){
-        let quantity = 0;
+        priceResult.textContent = `Стоимость: 0 руб.`;
+        return;
     }
     let price = service.basePrice * quantity;
     
