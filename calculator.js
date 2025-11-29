@@ -84,12 +84,12 @@ function calculatePrice() {
     const quantity = parseInt(quantityInput.value) || 0;
     const selectedType = document.querySelector('input[name="serviceType"]:checked').value;
     const service = serviceData[selectedType];
-    if(quantity>0){
+    if(quantity < 1){
+        let quantity = 0;
+    }
     let price = service.basePrice * quantity;
-    }
-    else{
-        let price=0;
-    }
+    
+    
     // Добавляем стоимость опции для премиум услуги
     if (service.hasOptions) {
         const selectedOption = optionsSelect.value;
