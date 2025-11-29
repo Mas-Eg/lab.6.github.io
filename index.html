@@ -233,7 +233,9 @@
             const quantity = parseInt(quantityInput.value) || 0;
             const selectedType = document.querySelector('input[name="serviceType"]:checked').value;
             const service = serviceData[selectedType];
-            
+            if(quantity<1){
+                let quantity = 0;
+            }
             let price = service.basePrice * quantity;
             
             // Добавляем стоимость опции для премиум услуги
